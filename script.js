@@ -69,7 +69,42 @@ var lowerCase = [
   "z",
 ]; // lowercase letters used in the password generator
 var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // numbers used in the password generator
-var specialChar = [" ", "!", "\"", "#", "$", "%", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"]; // special characters used in the password generator
+var specialChar = [
+  " ",
+  "!",
+  '"',
+  "#",
+  "$",
+  "%",
+  "%",
+  "&",
+  "'",
+  "(",
+  ")",
+  "*",
+  "+",
+  ",",
+  "-",
+  ".",
+  "/",
+  ":",
+  ";",
+  "<",
+  "=",
+  ">",
+  "?",
+  "@",
+  "[",
+  "\\",
+  "]",
+  "^",
+  "_",
+  "`",
+  "{",
+  "|",
+  "}",
+  "~",
+]; // special characters used in the password generator
 // backslash added before " and \ so I can put them in the array without causing an error
 
 function generatePassword() {
@@ -110,10 +145,38 @@ function generatePassword() {
   if (passwordSpecialChar == true) {
     confirmIncluded += specialChar.join("");
   } // if special characters is included it gets added to the string of characters
-  if (confirmIncluded === "") {
-    alert("Invalid Entry. One or more character types must be included.");
-    return "Try again."; // if none of the character types are included then a try again message comes up on the column that generates the password
+  // if (confirmIncluded === "") {
+  //   alert("Invalid Entry. One or more character types must be included.");
+  //   return "Try again."; // if none of the character types are included then a try again message comes up on the column that generates the password
+  // }
+  if (
+    !passwordUpperCase &&
+    !passwordLowerCase &&
+    !passwordNumeric &&
+    !passwordSpecialChar
+  ) {
+    alert("Invalid Entry. You must include at least one character type.");
+    return "Try again.";
+  } else {
+    var validateMessage =
+      "Password length: " +
+      passwordLength +
+      " character(s).\nCharacter type(s): ";
+    if (passwordUpperCase) {
+      validateMessage += "Uppercase, ";
+    }
+    if (passwordLowerCase) {
+      validateMessage += "Lowercase, ";
+    }
+    if (passwordNumeric) {
+      validateMessage += "Numbers, ";
+    }
+    if (passwordSpecialChar) {
+      validateMessage += "Special Characters";
+    }
+    alert(validateMessage);
   }
+
   for (i = 0; i < passwordLength; i++) {
     var randomPassword = Math.floor(Math.random() * confirmIncluded.length);
     password += confirmIncluded.charAt(randomPassword);
