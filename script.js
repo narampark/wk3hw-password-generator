@@ -108,7 +108,7 @@ var specialChar = [
 // backslash added before " and \ so I can put them in the array without causing an error
 
 function generatePassword() {
-  var password = ""; // variable password and assigning an empty string
+  var password = ""; // variable password and assigning an empty string otherwise you get a string [object HTMLTextAreaElement]
   var passwordLength = prompt(
     "Choose your password length (minimum 8 characters and maximum 128 characters)."
   ); // prompt() to give the prompt
@@ -145,18 +145,12 @@ function generatePassword() {
   if (passwordSpecialChar == true) {
     confirmIncluded += specialChar.join("");
   } // if special characters is included it gets added to the string of characters
-  // if (confirmIncluded === "") {
-  //   alert("Invalid Entry. One or more character types must be included.");
-  //   return "Try again."; // if none of the character types are included then a try again message comes up on the column that generates the password
-  // }
+  
   if (
-    !passwordUpperCase &&
-    !passwordLowerCase &&
-    !passwordNumeric &&
-    !passwordSpecialChar
+    !passwordUpperCase && !passwordLowerCase && !passwordNumeric && !passwordSpecialChar
   ) {
     alert("Invalid Entry. You must include at least one character type.");
-    return "Try again.";
+    return "Try again."; // if none of the character types are selected display message saying try again
   } else {
     var validateMessage =
       "Password length: " +
@@ -175,7 +169,7 @@ function generatePassword() {
       validateMessage += "Special Characters";
     }
     alert(validateMessage);
-  }
+  } // if at least one of the character types are selected display a validation message consisting of the parameters that have been selected and the password length
 
   for (i = 0; i < passwordLength; i++) {
     var randomPassword = Math.floor(Math.random() * confirmIncluded.length);
