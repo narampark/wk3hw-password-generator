@@ -108,7 +108,7 @@ var specialChar = [
 // backslash added before " and \ so I can put them in the array without causing an error
 
 function generatePassword() {
-  var password = ""; // variable password and assigning an empty string otherwise you get a string [object HTMLTextAreaElement]
+  var password = ""; // variable password and assigning an empty string otherwise you get a string [object HTMLTextAreaElement] cause there's no variable for the return password to return to.
   var passwordLength = prompt(
     "Choose your password length (minimum 8 characters and maximum 128 characters)."
   ); // prompt() to give the prompt
